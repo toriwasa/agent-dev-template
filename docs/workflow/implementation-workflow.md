@@ -27,15 +27,7 @@ updated_at: 2026-10-04
 - 当該フェーズの差分の must 指摘が解消されている
 - Plan のチェックボックスを更新してコミットしている
 
-## 2. 実装レビュータスク (`implementation-review`)
-- main ブランチとの差分について、`coding-standards-validator` を実装レビューモードで起動してレビューする
-- must 指摘はエージェントが修正する
-- should 以下の指摘はユーザーに修正判断を委ねる(承認ゲート)
-
-### 完了条件
-- must 指摘が全て解消され、should 以下の指摘についてユーザーの判断が反映されている
-
-## 3. spec/ADR昇格タスク (`promote-spec-adr`)
+## 2. spec/ADR昇格タスク (`promote-spec-adr`)
 - 設計メモの「変更対象 spec」を入力として、実装後のソースコードが外から見てどのようなインターフェース・振る舞いを持つかを確認し、`docs/spec` 配下の spec ファイルを作成または更新する
 - 設計メモの「代替案と却下理由 Why Not」に検討に値する代替案があれば、`docs/adr` 配下に ADR を作成する(「ADRなし」の場合は作成しない)
 - spec・ADR には設計メモの slug やパスを記載しない。それ単体で意味が通るように書く
@@ -50,8 +42,19 @@ updated_at: 2026-10-04
 - spec・ADR の must 指摘が解消されている
 - 設計メモの削除を含むコミットが作成されている
 
-## 4. PR作成タスク (`create-pr`)
-- `.github/PULL_REQUEST_TEMPLATE/implementation.md` に沿って実装PRを作成する
+## 3. PR作成タスク (`create-pr`)
+レビューを通さずに実装PRを作成しないよう、実装レビューと承認ゲートをこのタスクの中で行う
+
+### 実装レビュー
+- main ブランチとの差分について、`coding-standards-validator`(実装レビューモード)と `spec-adr-validator` を並行して起動してレビューする。`spec-adr-validator` は spec/ADR昇格タスクでも起動しているため、基本的には指摘が出ない想定で、レビュー時の修正で spec やコメントとの整合が崩れていないかを確認する
+- must 指摘はエージェントが修正する
+- should 以下の指摘はユーザーに修正判断を委ねる(承認ゲート)。判断待ちの指摘がなければ止まらずに進む
+
+### 実装PRの作成
+- `uv run pytest` と `uv run pyright` を実行し、失敗した場合は PR を作成しない
+- レビューでの修正をコミットする
+- `.github/PULL_REQUEST_TEMPLATE/implementation.md` に沿って実装PRを作成する。ユーザーが修正しないと判断した指摘は「見送った指摘」に記載する
 
 ### 完了条件
+- must 指摘が全て解消され、should 以下の指摘についてユーザーの判断が反映されている
 - 実装PRが作成されている
