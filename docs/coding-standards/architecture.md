@@ -9,12 +9,21 @@ updated_at: 2026-10-04
 ## ディレクトリ構成
 
 ```txt
-src/project-name
-├ handler
-├ controller
-├ logic
-└ infrastructure
+project-name
+├ pyproject.toml
+├ src/project_name
+│ ├ handler
+│ ├ controller
+│ ├ logic
+│ └ infrastructure
+└ tests
+  ├ controller
+  └ logic
 ```
+
+- リポジトリ直下の `project-name/` にプロジェクト一式を置き、プロダクトコード `src/` とテストコード `tests/` を並べる
+- `tests/` 配下はテスト対象の層と同名のディレクトリに分ける。small テストは `tests/logic`、middle テストは `tests/controller` に置く
+- handler 層は単体テストを作成しないため `tests/handler` は作らない
 
 ## ディレクトリの役割
 ### handler
@@ -47,11 +56,12 @@ src/project-name
 - I/O処理にロジックを含めたい場合、入力データをlogicで加工したり、logicで加工や判断を行ってからI/O出力したりすることで対応する
 
 ## レビュー観点
-- [must] 新規モジュールが `src/<project-name>/` 配下の handler・controller・logic・infrastructure のいずれかに配置されている(→ ディレクトリ構成)
+- [must] 新規モジュールが `project-name/src/project_name/` 配下の handler・controller・logic・infrastructure のいずれかに配置されている(→ ディレクトリ構成)
+- [must][実装] テストファイルが `project-name/tests/` 配下の、テスト対象の層と同名のディレクトリに配置されている(→ ディレクトリ構成)
 - [must] CLI 引数・リクエストパラメータのバリデーションが handler 層で行われている(→ handler)
 - [must] handler 層がユーザー入力をデータクラスに変換してから controller 層を呼び出している(→ handler)
 - [must] handler 層が logic・infrastructure 層の関数を直接呼び出さず、controller 層の関数を経由している(→ handler)
-- [must][実装] handler 層の出力加工用の関数が `cli.py` 内に定義されている(→ handler)
+- [must][実装] handler 層の出力加工用の関数が `handler/cli.py` 内に定義されている(→ handler)
 - [should][実装] handler 層に単体テストを作成していない(→ handler)
 - [must] controller 層の関数が処理結果をデータクラスで handler 層に返している(→ controller)
 - [should] controller 層の関数がユーザーにとって意味のある一連の処理単位になっている(→ controller)

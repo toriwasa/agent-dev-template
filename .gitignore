@@ -1,3 +1,10 @@
 # 調査メモは使い捨てのためリポジトリに含めない (docs/workflow/README.md 参照)
 docs/investigation/*
 !docs/investigation/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+dist/

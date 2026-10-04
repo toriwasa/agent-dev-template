@@ -62,7 +62,7 @@ Bash は `git diff`・`git log`・`git show`・`git merge-base`・`git status`�
 ### [must] 1. 区切り文字の記述がコードと食い違っている
 - 観点: spec とコードの食い違い
 - 場所: docs/spec/csv-export.md の「振る舞い」
-- 根拠: src/project_name/infrastructure/csv_writer.py:20 で区切り文字にタブを使っている
+- 根拠: project-name/src/project_name/infrastructure/csv_writer.py:20 で区切り文字にタブを使っている
 - 指摘: spec では区切り文字をカンマと記述している
 - 修正案: spec の区切り文字の記述をタブに更新する
 ```

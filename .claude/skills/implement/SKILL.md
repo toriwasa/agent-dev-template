@@ -35,7 +35,7 @@ argument-hint: "[slug]"
 完了条件: 全ての指摘が「修正済みの must」「誤検知と判断した must」「未解決の must」「should・nit」のいずれかに分類されている
 
 ## 4. テストと型チェックを実行する
-- `uv run pytest` と `uv run pyright` を実行し、失敗があれば修正する。修正がフェーズの範囲を超える場合は、コミットせずに状況をユーザーに伝えて終了する
+- `uv run --directory project-name pytest` と `uv run --directory project-name pyright` を実行し、失敗があれば修正する。修正がフェーズの範囲を超える場合は、コミットせずに状況をユーザーに伝えて終了する
 - `pyproject.toml` がないなどの理由で実行できない場合は、その理由を記録して先に進む
 
 完了条件: テストと型チェックが通っている、または実行できなかった理由が記録されている
