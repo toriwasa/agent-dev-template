@@ -1,6 +1,6 @@
 ---
 name: design-spec-validator
-description: 設計メモの「変更対象 spec」が実装内容 How と対応しているか、既存 spec と矛盾する前提で設計していないかを検証する読み取り専用レビューエージェント。design-review タスクから、検証対象の設計メモのパスを明示して呼び出す。
+description: 設計メモの「変更対象 spec」が実装内容 How と対応しているか、既存 spec と矛盾する前提で設計していないかを検証する読み取り専用レビューエージェント。design-note・create-pr タスクから、検証対象の設計メモのパスを明示して呼び出す。
 tools: Read, Grep, Glob, Bash
 model: inherit
 ---

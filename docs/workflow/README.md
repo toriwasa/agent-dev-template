@@ -17,10 +17,10 @@ updated_at: yyyy-MM-dd
 
 ```txt
 [design-workflow]
-調査(Option) → 設計 → 設計レビュー → ★ユーザー確定 → 設計PR作成 → (マージ)
+調査(Option) → 設計 → PR作成(設計レビュー → ★ユーザー確定 → 設計PR作成) → (マージ)
 
 [implementation-workflow]
-実装フェーズ1..N → 実装レビュー(★should以下の判断) → spec/ADR昇格 → 実装PR作成 → (マージ)
+実装フェーズ1..N → spec/ADR昇格 → PR作成(実装レビュー → ★should以下の判断 → 実装PR作成) → (マージ)
 ```
 
 - (Option) は省略可能なタスク。方針が自明な簡単な実装では省略し、設計から始めてよい。実施するかどうかはユーザーが作業開始時に判断する
@@ -31,11 +31,9 @@ updated_at: yyyy-MM-dd
 |---|---|---|
 | 調査 | `investigate` | design |
 | 設計 | `design-note` | design |
-| 設計レビュー | `design-review` | design |
-| 実装(フェーズ実行) | `implement-phase` | implementation |
-| 実装レビュー | `implementation-review` | implementation |
+| 実装(フェーズ実行) | `implement` | implementation |
 | spec/ADR昇格 | `promote-spec-adr` | implementation |
-| PR作成 | `create-pr` | 両方 |
+| PR作成(設計レビュー・実装レビューを含む) | `create-pr` | 両方 |
 
 ## 作業単位の識別子 (slug)
 1つの作業は日付付き kebab-case の slug で識別する。日付は作業を開始した日(最初に実施した調査タスクまたは設計タスクの開始日)に固定し、以降付け直さない
@@ -52,11 +50,13 @@ updated_at: yyyy-MM-dd
 ## 承認ゲート
 エージェントが作業を止めてユーザーの判断を待つのは次の2箇所のみ
 
-1. 設計レビュー完了後: 設計メモとレビュー結果(should以下の指摘を含む)を提示し、ユーザーが設計メモを確定する
-2. 実装レビューで should 以下の指摘が出たとき: 修正するかどうかをユーザーが判断する
+1. 設計PRの PR作成タスクで設計レビューが完了した後: 設計メモとレビュー結果(should以下の指摘を含む)を提示し、ユーザーが設計メモを確定する
+2. 実装PRの PR作成タスクで、実装レビューに should 以下の指摘が出たとき: 修正するかどうかをユーザーが判断する
+
+- 設計タスク・実装タスク・spec/ADR昇格タスクのレビューでは、must だけを修正し、should 以下は報告のみとして止まらない。それらの指摘は PR作成タスクのレビューで再び検出され、ユーザーが判断する
 
 ## レビュー指摘の重大度
-全レビュータスク(設計レビュー・実装レビュー・spec/ADR整合レビュー)で共通の区分を使う
+全てのレビュー(設計レビュー・実装レビュー・spec/ADR整合レビュー)で共通の区分を使う
 
 | 重大度 | 定義 | 対応 |
 |---|---|---|
