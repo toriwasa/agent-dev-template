@@ -1,3 +1,9 @@
+---
+document_type: coding-standard
+created_at: 2026-10-03
+updated_at: 2026-10-03
+---
+
 # 型ヒント・データクラスの運用方針
 
 ## 型ヒントの運用ルール
