@@ -1,5 +1,5 @@
 ---
-name: implement-phase
+name: implement
 description: 設計メモ Plan の未完了の最初のフェーズを1つ実装し、そのフェーズの差分の must をレビューで修正してコミットする(実装ワークフローの実装タスク)
 disable-model-invocation: true
 argument-hint: "[slug]"
@@ -49,6 +49,6 @@ argument-hint: "[slug]"
   - 修正済みの must
   - 誤検知と判断した must とその理由、未解決の must
   - should・nit の一覧
-  - 次の作業: Plan に未完了のフェーズが残っていれば `/implement-phase`、残っていなければ `/promote-spec-adr`
+  - 次の作業: Plan に未完了のフェーズが残っていれば `/implement`、残っていなければ `/promote-spec-adr`
 
 完了条件: Plan の更新を含むコミットが作成され、結果を報告している

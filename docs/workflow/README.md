@@ -31,7 +31,7 @@ updated_at: yyyy-MM-dd
 |---|---|---|
 | 調査 | `investigate` | design |
 | 設計 | `design-note` | design |
-| 実装(フェーズ実行) | `implement-phase` | implementation |
+| 実装(フェーズ実行) | `implement` | implementation |
 | spec/ADR昇格 | `promote-spec-adr` | implementation |
 | PR作成(設計レビュー・実装レビューを含む) | `create-pr` | 両方 |
 
