@@ -1,7 +1,7 @@
 ---
 document_type: coding-standard
 created_at: 2026-10-03
-updated_at: 2026-10-03
+updated_at: 2026-10-04
 ---
 
 # アーキテクチャ
@@ -23,6 +23,8 @@ src/project-name
 - 最初は cli.py のみで、GUIが必要になったらWebAPIインターフェース定義を追加してローカルWebサーバーでGUIを実装する
 - CLIにおける引数バリデーションチェック、WebAPIにおけるリクエストパラメータのバリデーションチェックを担当する
 - ユーザーの入力をデータクラス化してコントローラー層処理を呼び出す
+- logic, infrastructure 層の関数を直接呼び出さず、必ずコントローラー層の関数を作成して経由する。
+  外部入力に影響されずに一連の処理を middle 単体テストできるようにするため
 - コントローラー層の処理結果をユーザーに見せるために加工する必要がある場合は cli.py 内に加工用の関数を作成する
 - 単体テストではなく、実際にCLIコマンドやGUI表示内容確認などE2Eで動作確認する
 
@@ -45,4 +47,16 @@ src/project-name
 - I/O処理にロジックを含めたい場合、入力データをlogicで加工したり、logicで加工や判断を行ってからI/O出力したりすることで対応する
 
 ## レビュー観点
-- TODO: 記載
+- [must] 新規モジュールが `src/<project-name>/` 配下の handler・controller・logic・infrastructure のいずれかに配置されている(→ ディレクトリ構成)
+- [must] CLI 引数・リクエストパラメータのバリデーションが handler 層で行われている(→ handler)
+- [must] handler 層がユーザー入力をデータクラスに変換してから controller 層を呼び出している(→ handler)
+- [must] handler 層が logic・infrastructure 層の関数を直接呼び出さず、controller 層の関数を経由している(→ handler)
+- [must][実装] handler 層の出力加工用の関数が `cli.py` 内に定義されている(→ handler)
+- [should][実装] handler 層に単体テストを作成していない(→ handler)
+- [must] controller 層の関数が処理結果をデータクラスで handler 層に返している(→ controller)
+- [should] controller 層の関数がユーザーにとって意味のある一連の処理単位になっている(→ controller)
+- [must][実装] controller 層の関数に正常系最小ケースの middle 単体テストがある(→ controller)
+- [must] logic 層に現在時刻取得・ネットワーク・ディスク・DB などの I/O を伴う処理が割り当てられていない(→ logic)
+- [must][実装] logic 配下のモジュールが infrastructure 配下を import しておらず、`datetime.now()`・`open()`・HTTP クライアントなどの I/O API を呼んでいない(→ logic)
+- [must][実装] logic 層の関数に small 単体テストがある(→ logic)
+- [should] infrastructure 層の処理が I/O とデータクラスの相互変換に留まり、加工・判断のロジックが logic 層に切り出されている(→ infrastructure)
