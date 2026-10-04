@@ -1,0 +1,36 @@
+[project]
+name = "project-name"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+project-name = "project_name.handler.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.26,<0.12"]
+build-backend = "uv_build"
+
+[tool.pyright]
+include = ["src", "tests"]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "strict"
+reportMatchNotExhaustive = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# tests/logic と tests/controller に同名のテストファイルを置けるようにするため
+addopts = ["--strict-markers", "--import-mode=importlib"]
+markers = [
+    "small: I/O を含まないビジネスロジック関数のテスト",
+    "middle: I/O 処理を含むコントローラー層関数のテスト",
+    "large: より重い処理のテスト(現在は未定義)",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.414",
+    "pytest>=9.1.1",
+]
