@@ -65,7 +65,7 @@ Bash は `git diff`・`git log`・`git show`・`git merge-base`・`git status`�
 ## 指摘
 ### [must] 1. logic 層の関数が現在時刻を取得している
 - 規約: architecture.md#logic
-- 場所: src/project_name/logic/score.py:12
+- 場所: project-name/src/project_name/logic/score.py:12
 - 指摘: `calculate_score` 内で `datetime.now()` を呼んでおり、logic 層が I/O を持っている
 - 修正案: 現在時刻を infrastructure 層で取得し、引数で `calculate_score` に渡す
 

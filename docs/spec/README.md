@@ -16,7 +16,7 @@ status: active
 created_at: yyyy-MM-dd
 updated_at: yyyy-MM-dd
 sources:
-  - src/project-name/...
+  - project-name/src/project_name/...
 ```
 
 | 項目 | 内容 |

@@ -20,7 +20,7 @@ updated_at: 2026-10-04
 - ビジネスロジック関数については単体テストを実装して検証する
 - 当該フェーズの未コミットの差分について、`coding-standards-validator` を実装レビューモード(基準 `HEAD`)で起動してレビューする
 - must 指摘はエージェントが修正する。should 以下の指摘は修正せず報告し、PR作成タスクの実装レビューでユーザーが判断する
-- `uv run pytest` と `uv run pyright` を実行して検証する
+- `uv run --directory project-name pytest` と `uv run --directory project-name pyright` を実行して検証する
 
 ### 完了条件
 - 当該フェーズの完了条件を満たしている
@@ -51,7 +51,7 @@ updated_at: 2026-10-04
 - should 以下の指摘はユーザーに修正判断を委ねる(承認ゲート)。判断待ちの指摘がなければ止まらずに進む
 
 ### 実装PRの作成
-- `uv run pytest` と `uv run pyright` を実行し、失敗した場合は PR を作成しない
+- `uv run --directory project-name pytest` と `uv run --directory project-name pyright` を実行し、失敗した場合は PR を作成しない
 - レビューでの修正をコミットする
 - `.github/PULL_REQUEST_TEMPLATE/implementation.md` に沿って実装PRを作成する。ユーザーが修正しないと判断した指摘は「見送った指摘」に記載する
 

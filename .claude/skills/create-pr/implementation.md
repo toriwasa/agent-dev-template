@@ -33,13 +33,13 @@
 - 検証: coding-standards-validator(検証した規約: ...)、spec-adr-validator(検証した spec: ...、検証した ADR: ...)
 
 ## 修正済みの must
-- [コード規約] src/project_name/logic/score.py:12 現在時刻の取得を infrastructure 層に移した(architecture.md#logic)
+- [コード規約] project-name/src/project_name/logic/score.py:12 現在時刻の取得を infrastructure 層に移した(architecture.md#logic)
 
 ## 未解決の must
 なし
 
 ## 判断待ち
-1. [should][コード規約] src/project_name/cli.py:30 ...(naming.md#関数名)
+1. [should][コード規約] project-name/src/project_name/handler/cli.py:30 ...(naming.md#関数名)
 2. [should][spec] docs/spec/csv-export.md の「インターフェース」 ...
 3. [must→判断待ち][コード規約] ...。誤検知と判断した理由: ...
 
@@ -59,7 +59,7 @@
 完了条件: 判断待ちと未解決の must の全項目について、ユーザーの判断(修正する・しない)が反映され、見送った指摘が記録されている
 
 ## 6. テストと型チェックを実行する
-- `uv run pytest` と `uv run pyright` を実行する。失敗した場合は、コミットも PR作成もせずに結果をユーザーに伝えて終了する
+- `uv run --directory project-name pytest` と `uv run --directory project-name pyright` を実行する。失敗した場合は、コミットも PR作成もせずに結果をユーザーに伝えて終了する
 - `pyproject.toml` がないなどの理由で実行できない場合は、「未実行」とその理由を記録して先に進む
 
 完了条件: テストと型チェックが通っている、または未実行の理由が記録されている
