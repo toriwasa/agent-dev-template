@@ -1,6 +1,6 @@
 ---
 name: coding-standards-validator
-description: docs/coding-standards のコード規約に設計メモまたは実装差分が準拠しているかを検証する読み取り専用レビューエージェント。implement・create-pr タスクから、モード(設計/実装)と検証対象を明示して呼び出す。
+description: docs/coding-standards のコード規約に設計メモまたは実装差分が準拠しているかを検証する読み取り専用レビューエージェント。design-note・implement・create-pr タスクから、モード(設計/実装)と検証対象を明示して呼び出す。
 tools: Read, Grep, Glob, Bash
 model: inherit
 ---
