@@ -29,7 +29,7 @@ src/project-name
 ### controller
 - handler層から呼び出される関数が定義される
 - logic, infrastructure 配下のビジネスロジックおよびI/O処理を実行する関数を呼び出して、ユーザーにとって意味のある一連の処理を実行する
-- middele単体テストの対象。正常系最小ケースのみテストする
+- middle単体テストの対象。正常系最小ケースのみテストする
 - 処理結果はデータクラスでhandler層に返却する
 
 ### logic

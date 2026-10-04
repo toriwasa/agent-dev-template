@@ -34,7 +34,7 @@ def test_テスト対象関数が満たすべきビジネスルール():
     param = "aaa"
 
     # 期待値の準備
-    expectd = "bbb"
+    expected = "bbb"
 
     # Act
     # テスト対象関数を呼び出して返り値を受け取るコード。Actフェーズは1行のみ
