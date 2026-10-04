@@ -1,7 +1,7 @@
 ---
 document_type: coding-standard
 created_at: 2026-10-03
-updated_at: 2026-10-03
+updated_at: 2026-10-04
 ---
 
 # 命名規則
@@ -29,4 +29,10 @@ updated_at: 2026-10-03
   - 例: `ExperimentMeta`, `GenerationResult`, `LLMResponse`
 
 ## レビュー観点
-- TODO: 記載
+- [must] 関数名が動詞で始まっている(→ 関数名)
+- [should] 関数名から I/O 処理かビジネスロジックかを区別できる(→ 関数名)
+- [should] controller 層の関数名が処理全体で実現したい内容を表している(→ 関数名)
+- [should] 定数名が値そのもの(例: `FIVE`, `TEN_SECONDS`)ではなく利用目的を表している(→ 定数名)
+- [must] 読み書き先パスや接続先情報を必要とする I/O 処理がクラスで管理されている(→ クラス名)
+- [should] I/O 管理クラス名から外部 I/O のリソース名が分かる(→ クラス名)
+- [should] データクラス名がフィールドの中身ではなく、受け取る処理から見た目的を表している(→ データクラス名)
